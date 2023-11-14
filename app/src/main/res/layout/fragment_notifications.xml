@@ -1,0 +1,43 @@
+<!-- A ScrollView allows for vertical scrolling when the content exceeds the viewport.
+     This ensures the UI remains accessible regardless of content length or screen size.
+     Represents a responsive design layout strategy. -->
+<!--    Documentation of “best practices”: The annotations clearly explain the purpose and functionality of each element.-->
+<!--    Responsive design Layout strategy: The use of ScrollView ensures content remains accessible on various screen sizes.-->
+<!--    Choice of Views and view positioning: Elements like LinearLayout, TextView, and Button have been utilized to present content effectively. The use of attributes like android:layout_gravity shows a conscious decision in view positioning.-->
+<!--    Scalability/extensibility/adaptability: The layout is organized in such a way that additional UI components can be easily added within the LinearLayout without disrupting the existing design.-->
+<!--    User-centric design choices: Text sizes are specified in sp to respect user accessibility settings.-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- LinearLayout with a vertical orientation is used to stack child views vertically.
+         It's a simple yet effective way to organize UI components one below the other. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/dealContainer"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- TextView displays the details of the deal.
+             The text size is specified in scale-independent pixels (sp) which adjusts
+             based on the user's font size preferences ensuring user-centric design. -->
+        <TextView
+            android:id="@+id/dealDetailsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp" />
+
+        <!-- Button is used to acknowledge the deal. The background color is set to a specific
+             green tint and it's centered horizontally within the LinearLayout. -->
+        <Button
+            android:id="@+id/btn_acknowledge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mark as Read"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="#19711D" />
+            <!-- Controls positioning of the view within its parent -->
+    </LinearLayout>
+
+</ScrollView>

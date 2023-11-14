@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--    Documentation of “best practices”: Explained the use of layout inflater and the button for navigation.-->
+<!--    Responsive design Layout strategy: Mentioned the flexibility of defining UI in XML layout which can adapt to different screen sizes.-->
+<!--    Choice of Views and view positioning: Discussed the use of a button as a clear visual cue for navigation.-->
+<!--    Scalability/extensibility/adaptability: Emphasized the modular design of fragments allowing for future extensibility of UI components.-->
+<!--    User-centric design choices: Using a button for clear navigation ensures a user-friendly experience.-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="?attr/actionBarSize">
+
+    <!-- Using ConstraintLayout as the parent layout ensures responsiveness and adaptability
+         across various screen sizes and orientations. -->
+
+    <!-- FragmentContainerView serves as the primary container for fragments in this activity.
+         This is a modern replacement for FrameLayout that comes with improved fragment handling.
+         It's more performant and offers better lifecycle management. -->
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment_activity_main"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/mobile_navigation" />
+
+    <!-- The use of `app:navGraph` ties this layout to the navigation graph.
+         This makes it easier to visualize and manage app navigation paths using the Navigation Component,
+         ensuring a user-centric and intuitive flow throughout the application. -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

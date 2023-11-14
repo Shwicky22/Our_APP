@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="button_label">Find Deals!</string>
+    <string name="sparty_deals"><b>SpartyDeals</b></string>
+    <string name="deal_1">Deal 1</string>
+    <string name="deal_2">Deal 2</string>
+    <string name="deal_3">Deal 3</string>
+    <string name="deal_4">Deal 4</string>
+    <string name="deal_5">Deal 5</string>
+    <string name="deal_6">Deal 6</string>
+    <string name="deal_7">Deal 7</string>
+    <string name="deal_8">Deal 8</string>
+    <string name="deal_9">Deal 1</string>
+    <string name="deal_10">Deal 10</string>
+    <string name="deal_11">Deal 11</string>
+    <string name="deal_12">Deal 12</string>
+    <string name="deal_13">Deal 13</string>
+    <string name="deal_14">Deal 14</string>
+    <string name="deal_15">Deal 15</string>
+    <string name="deal_16">Deal 16</string>
+    <string name="deal_17">Deal 17</string>
+    <string name="deal_18">Deal 18</string>
+</resources>
