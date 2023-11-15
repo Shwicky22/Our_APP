@@ -23,4 +23,10 @@
     <string name="deal_16">Deal 16</string>
     <string name="deal_17">Deal 17</string>
     <string name="deal_18">Deal 18</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="click_to_login">Click to Login</string>
+    <string name="click_to_register">Click to Register</string>
 </resources>
