@@ -38,7 +38,10 @@ public class Register extends AppCompatActivity {
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            mAuth.signOut();
+
+            // Redirect to the login screen
+            Intent intent = new Intent(getApplicationContext(), Login.class);
             startActivity(intent);
             finish();
         }
@@ -88,14 +91,10 @@ public class Register extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
-
-                                    Toast.makeText(Register.this, "Authentication created.",
-                                            Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Register.this, "Authentication created.", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    // If sign in fails, display a message to the user.
-
-                                    Toast.makeText(Register.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                    Log.e(TAG, "Authentication failed.", task.getException());
+                                    Toast.makeText(Register.this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
