@@ -39,6 +39,8 @@ public class HomeFragment extends Fragment {
     private FusedLocationProviderClient fusedLocationClient;
     private LocationRequest locationRequest;
     private LocationCallback locationCallback;
+
+    private LocalStorageHelper localStorageHelper;
     boolean alertShown = false; //flag to show alert when error is active
     final double EAST_LANSING_MIN_LAT = 42.681321; // boundaries for designated area
     final double EAST_LANSING_MAX_LAT = 42.783423;
@@ -55,11 +57,13 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        localStorageHelper = new LocalStorageHelper(getContext());
 
         Button button = view.findViewById(R.id.button); // button to go to next page
         button.setOnClickListener(v -> {
             NavHostFragment.findNavController(this).navigate(R.id.navigation_dashboard);
         });
+
 
         checkLocation(); // updates location and checks permissions
         LocationManager locationManager = (LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE);
@@ -71,6 +75,11 @@ public class HomeFragment extends Fragment {
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
         }
+    }
+
+    private void storeLocation(double latitude,double longitude) {
+        localStorageHelper.saveData("lastLatitude", String.valueOf(latitude));
+        localStorageHelper.saveData("lastLongitude", String.valueOf(longitude));
     }
 
     private void checkLocation() {
@@ -103,6 +112,7 @@ public class HomeFragment extends Fragment {
                     if (location != null) {//makes sure there is a location
                         double latitude = location.getLatitude();//get latitude
                         double longitude = location.getLongitude();//get longitude
+                        storeLocation(latitude, longitude);
                         //Toast.makeText(getContext(), "Latitude: " + latitude + ", Longitude: " + longitude, Toast.LENGTH_LONG).show();
                         Log.d("LocationDebug", "Latitude: " + latitude + ", Longitude: " + longitude);
                         boolean longneg = longitude < 0; // checks to see if longitude is negative to make sure that were working with negative longitude for east lansing
@@ -163,6 +173,22 @@ public class HomeFragment extends Fragment {
                             .show();
                 });
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission was granted
+                checkLocation();
+            } else {
+                // Permission denied
+                Toast.makeText(getContext(), "Permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
 
 }
 
