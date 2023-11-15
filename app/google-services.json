@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "883795622262",
+    "project_id": "login-deals-sparty",
+    "storage_bucket": "login-deals-sparty.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883795622262:android:0b22cec51328cf4e87a257",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmIAcEPmXeA2sSHA-0hShBE-ALbZZ6yy0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

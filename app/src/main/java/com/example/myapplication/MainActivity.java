@@ -17,7 +17,7 @@ import com.example.myapplication.databinding.ActivityMainBinding;
 //        Scalability/extensibility/adaptability: Constants for prefix and total deals, and loop in the resetDealStates method ensure the code can handle the addition of more deals without change.
 //        User-centric design choices: Resetting the deal state upon app restart ensures a consistent user experience. Navigation actions improve navigation UX.
 
-public class MainActivity extends AppCompatActivity {
+public class  MainActivity extends AppCompatActivity {
 
     private NavController navController;
     private AppBarConfiguration appBarConfiguration;
