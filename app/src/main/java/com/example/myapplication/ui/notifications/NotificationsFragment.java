@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +16,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentNotificationsBinding;
+
+import java.util.HashMap;
+import java.util.Map;
 
 //        Documentation of “best practices” is reflected in the usage of View Binding, SharedPreferences, etc.
 //        Choice of Views and view positioning is apparent in the use of various UI elements and their setup in the onViewCreated method.
@@ -70,6 +78,33 @@ public class NotificationsFragment extends Fragment {
         return binding.getRoot();
     }
 
+    private void sendDealToServer(int dealNumber) {
+        String url = "http://localhost/index.php";
+
+        RequestQueue queue = Volley.newRequestQueue(requireContext());
+        String dealDetail = dealDetails[dealNumber - 1];
+
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                response -> {
+                    Log.d("Response", response);
+                },
+                error -> {
+                    Log.d("Error.Response", error.toString());
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("deal_id", String.valueOf(dealNumber));
+                params.put("deal_title", "Title for Deal " + dealNumber);
+                params.put("deal_description", dealDetail);
+                return params;
+            }
+        };
+
+        queue.add(postRequest);
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -95,6 +130,7 @@ public class NotificationsFragment extends Fragment {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean(currentButtonStateKey, true);
                     editor.apply();
+                    sendDealToServer(dealNumber);
                 }
             }
         });
